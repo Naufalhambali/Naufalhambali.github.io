@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My bio</title>
+  <title>My Bio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
   <style>
     * {
@@ -11,38 +11,46 @@
       padding: 0;
       box-sizing: border-box;
     }
+    html, body {
+      height: 100%;
+      overflow-x: hidden;
+    }
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #2c3e50, #3498db);
-      color: white;
       text-align: center;
       padding: 60px 20px;
       user-select: none;
-      transition: background 0.3s, color 0.3s;
+      transition: background 0.5s;
+    }
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
     }
     img {
       width: 160px;
       height: 160px;
       object-fit: cover;
-      aspect-ratio: 1 / 1;
       border-radius: 50%;
       border: 4px solid white;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-      animation: fadeIn 1.5s ease-out;
+      margin-bottom: 20px;
     }
     h1 {
-      margin-top: 20px;
       font-size: 34px;
-      animation: fadeInUp 1.5s ease forwards;
+      margin-bottom: 10px;
+      color: inherit;
     }
     p {
       font-size: 18px;
-      margin: 10px 0 20px;
-      color: #f0f0f0;
-      animation: fadeInUp 2s ease forwards;
+      margin-bottom: 10px;
+      color: inherit;
     }
     #tanggal {
-      color: #ccc;
+      color: inherit;
       margin-bottom: 30px;
     }
     .btn {
@@ -56,25 +64,12 @@
       font-weight: bold;
       transition: 0.3s;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 1;
     }
     .btn:hover {
       background: #e0e0e0;
     }
-
-    /* Dark mode */
-    .dark {
-      background: #111 !important;
-      color: white !important;
-    }
-    .dark p, .dark #tanggal {
-      color: #ccc !important;
-    }
-    .dark .btn {
-      background: #444 !important;
-      color: white !important;
-    }
-
-    /* Tombol dark mode posisi tetap */
     #darkmode-btn {
       position: fixed;
       bottom: 20px;
@@ -93,20 +88,13 @@
     #darkmode-btn:hover {
       background: #eeeeee;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
   </style>
 </head>
 <body>
 
-  <img src="img/images.jpg" alt="Foto Naufal" />
+  <div id="particles-js"></div>
+
+  <img src="img/images.jpg" alt="Foto Naufal">
   <h1 id="typing"></h1>
   <p>Developer • Pendidik • 📚</p>
   <p id="tanggal"></p>
@@ -114,12 +102,51 @@
   <a href="https://github.com/Naufalhambali" class="btn">🔗 GitHub</a>
   <a href="https://wa.me/6283141439348" class="btn">💬 WhatsApp</a>
 
-  <!-- Tombol dark mode -->
   <button id="darkmode-btn" onclick="toggleDarkMode()">🌓 Ganti Mode</button>
 
-  <!-- Script -->
+  <!-- CDN Particles.js -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
   <script>
-    // Efek ketik
+    let currentMode = 'dark';
+
+    function loadParticles(theme) {
+      if (window.pJSDom && window.pJSDom.length) {
+        window.pJSDom[0].pJS.fn.vendors.destroypJS();
+        window.pJSDom = [];
+      }
+
+      const isDark = theme === 'dark';
+      document.body.style.background = isDark ? '#000' : '#f4f4f4';
+      document.body.style.color = isDark ? '#ffffff' : '#222222';
+
+      particlesJS("particles-js", {
+        particles: {
+          number: { value: 100 },
+          color: { value: isDark ? ["#ffffff", "#99ccff"] : ["#222222", "#444444"] },
+          shape: { type: "circle" },
+          opacity: { value: 0.7, random: true },
+          size: { value: 2, random: true },
+          line_linked: { enable: false },
+          move: { enable: true, speed: 1, random: true, out_mode: "out" }
+        },
+        interactivity: {
+          events: {
+            onhover: { enable: true, mode: "repulse" },
+            onclick: { enable: true, mode: "push" }
+          },
+          modes: { repulse: { distance: 100 }, push: { particles_nb: 4 } }
+        },
+        retina_detect: true
+      });
+    }
+
+    function toggleDarkMode() {
+      currentMode = currentMode === 'dark' ? 'light' : 'dark';
+      loadParticles(currentMode);
+    }
+
+    // Efek ketik nama
     const teks = "Naufal Hambali";
     let i = 0;
     function ketik() {
@@ -129,29 +156,27 @@
         setTimeout(ketik, 100);
       }
     }
-    ketik();
 
-    // Tanggal & jam
+    // Waktu real-time
     function updateWaktu() {
       const now = new Date();
       const tgl = now.toLocaleDateString('id-ID', {
         weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
       });
       const jam = now.toLocaleTimeString('id-ID');
-      document.getElementById('tanggal').innerText = tgl + ' - ' + jam;
+      document.getElementById('tanggal').innerText = `${tgl} - ${jam}`;
     }
-    setInterval(updateWaktu, 1000);
-    updateWaktu();
 
-    // Cegah klik kanan
-    document.addEventListener('contextmenu', function (e) {
-      e.preventDefault();
-    });
+    // Inisialisasi
+    window.onload = () => {
+      loadParticles(currentMode);
+      ketik();
+      updateWaktu();
+      setInterval(updateWaktu, 1000);
+    };
 
-    // Toggle dark mode
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark");
-    }
+    // Nonaktif klik kanan
+    document.addEventListener('contextmenu', e => e.preventDefault());
   </script>
 </body>
 </html>
