@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My Profil</title>
+  <title>Naufal Hambali</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
   <style>
     * {
@@ -20,7 +20,7 @@
       text-align: center;
       padding: 60px 20px;
       user-select: none;
-      transition: background 0.5s;
+      transition: background 0.5s, color 0.5s;
     }
     #particles-js {
       position: fixed;
@@ -30,6 +30,68 @@
       height: 100%;
       z-index: -1;
     }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 15px 20px;
+      text-align: left;
+      background: transparent;
+      z-index: 1001;
+    }
+    .menu-toggle {
+      font-size: 24px;
+      background: none;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 150px;
+      height: 100%;
+      padding: 60px 20px;
+      transition: left 0.3s ease, background 0.3s ease, color 0.3s ease;
+      z-index: 1002;
+      text-align: left;
+    }
+    body.dark-mode .sidebar {
+      background: #fff;
+      color: #222;
+    }
+    body.dark-mode .sidebar a {
+      color: #222;
+    }
+    body.light-mode .sidebar {
+      background: #111;
+      color: #fff;
+    }
+    body.light-mode .sidebar a {
+      color: #fff;
+    }
+    .sidebar a {
+      display: block;
+      text-decoration: none;
+      margin: 15px 0;
+      font-size: 18px;
+    }
+    .sidebar.open {
+      left: 0;
+    }
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      display: none;
+    }
+    .overlay.active {
+      display: block;
+    }
     img {
       width: 160px;
       height: 160px;
@@ -38,19 +100,17 @@
       border: 4px solid white;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
       margin-bottom: 20px;
+      margin-top: 80px;
     }
     h1 {
       font-size: 34px;
       margin-bottom: 10px;
-      color: inherit;
     }
     p {
       font-size: 18px;
       margin-bottom: 10px;
-      color: inherit;
     }
     #tanggal {
-      color: inherit;
       margin-bottom: 30px;
     }
     .btn {
@@ -90,22 +150,41 @@
     }
   </style>
 </head>
-<body>
+<body class="dark-mode">
 
+  <!-- Partikel -->
   <div id="particles-js"></div>
 
+  <!-- Header dan Tombol Menu -->
+  <header>
+    <button class="menu-toggle" id="toggleBtn">☰</button>
+  </header>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <a href="index.html">🏠 Beranda</a>
+    <a href="tentang.html">🙋 Tentang</a>
+    <a href="portofolio.html">📁 Portofolio</a>
+    <a href="kontak.html">📞 Kontak</a>
+  </div>
+
+  <!-- Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Konten -->
   <img src="img/images.jpg" alt="Foto Naufal">
   <h1 id="typing"></h1>
   <p>Developer • Pendidik • 📚</p>
   <p id="tanggal"></p>
 
   <a href="https://github.com/Naufalhambali" class="btn">🔗 GitHub</a>
-  <a href="https://wa.me/6283141439348" class="btn">💬 WhatsApp</a>
-  <a href="https://instagram.com/nopalhambali_" class="btn">📷 Instagram</a>
+<!-- <a href="https://wa.me/6283141439348" class="btn">💬 WhatsApp</a>
+  <a href="https://instagram.com/nopalhambali_" class="btn">📷 Instagram</a> -->
 
+  <!-- Tombol Darkmode -->
   <button id="darkmode-btn" onclick="toggleDarkMode()">🌓 Ganti Mode</button>
 
-  <!-- CDN Particles.js -->
+  <!-- Particles.js -->
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
   <script>
@@ -118,8 +197,10 @@
       }
 
       const isDark = theme === 'dark';
+      document.body.classList.remove('dark-mode', 'light-mode');
+      document.body.classList.add(theme + '-mode');
       document.body.style.background = isDark ? '#000' : '#f4f4f4';
-      document.body.style.color = isDark ? '#ffffff' : '#222222';
+      document.body.style.color = isDark ? '#fff' : '#222';
 
       particlesJS("particles-js", {
         particles: {
@@ -147,7 +228,7 @@
       loadParticles(currentMode);
     }
 
-    // Efek ketik nama
+    // Efek ketik
     const teks = "Naufal Hambali";
     let i = 0;
     function ketik() {
@@ -158,7 +239,7 @@
       }
     }
 
-    // Waktu real-time
+    // Tanggal & waktu
     function updateWaktu() {
       const now = new Date();
       const tgl = now.toLocaleDateString('id-ID', {
@@ -168,7 +249,21 @@
       document.getElementById('tanggal').innerText = `${tgl} - ${jam}`;
     }
 
-    // Inisialisasi
+    // Sidebar
+    const toggleBtn = document.getElementById('toggleBtn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+
+    toggleBtn.onclick = () => {
+      sidebar.classList.add('open');
+      overlay.classList.add('active');
+    };
+    overlay.onclick = () => {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+    };
+
+    // Mulai
     window.onload = () => {
       loadParticles(currentMode);
       ketik();
