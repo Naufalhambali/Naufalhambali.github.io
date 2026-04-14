@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Nouval Hambali — Santri & Pengajar</title>
+  <meta name="description" content="Bio pribadi Muhammad Nouval Hambali, pelajar dan pengajar di Pondok Pesantren Darul Falah Gambut." />
+
+  <!-- Google Fonts: Playfair Display (elegan) + Nunito (body) + Amiri (Arab feel) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@300;400;500;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       LOADING SCREEN
+  ══════════════════════════════════════════ -->
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-arabic">بِسْمِ اللَّهِ</div>
+      <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+      <p class="loader-sub">Memuat halaman...</p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       CANVAS BACKGROUND
+  ══════════════════════════════════════════ -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- ══════════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════════ -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <!-- Logo -->
+      <a href="#home" class="nav-logo" aria-label="NH Logo">
+        <span class="logo-hex">
+          <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="30,3 56,17 56,43 30,57 4,43 4,17" fill="none" stroke="url(#lgNav)" stroke-width="2"/>
+            <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Playfair Display" font-size="18" font-weight="700" fill="url(#lgNav)">NH</text>
+            <defs>
+              <linearGradient id="lgNav" x1="0" y1="0" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#4ade80"/>
+                <stop offset="1" stop-color="#fbbf24"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </span>
+      </a>
+
+      <!-- Desktop Menu -->
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home"      class="nav-link active">Beranda</a></li>
+        <li><a href="#about"     class="nav-link">Tentang</a></li>
+        <li><a href="#hadith"    class="nav-link">Hadits</a></li>
+        <li><a href="#journey"   class="nav-link">Perjalanan</a></li>
+        <li><a href="#motivasi"  class="nav-link">Motivasi</a></li>
+        <li><a href="#contact"   class="nav-link">Kontak</a></li>
+      </ul>
+
+      <div class="nav-controls">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle tema">
+          <span class="t-icon sun">☀️</span>
+          <span class="t-icon moon">🌙</span>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Buka menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ══════════════════════════════════════════
+       HERO SECTION
+  ══════════════════════════════════════════ -->
+  <section id="home" class="hero">
+    <!-- Ornamen geometri latar -->
+    <div class="hero-ornament ornament-tl"></div>
+    <div class="hero-ornament ornament-br"></div>
+    <div class="geo-ring geo-ring-1"></div>
+    <div class="geo-ring geo-ring-2"></div>
+
+    <div class="hero-content">
+      <!-- Ayat pembuka -->
+      <div class="hero-bismillah reveal-fade" data-delay="0">
+        <span class="arabic-text">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</span>
+      </div>
+
+      <!-- Label -->
+      <p class="hero-eyebrow reveal-fade" data-delay="1">
+        <span class="eyebrow-line"></span>
+        Santri &amp; Pengajar Pondok Pesantren
+        <span class="eyebrow-line"></span>
+      </p>
+
+      <!-- Nama besar -->
+      <h1 class="hero-name reveal-fade" data-delay="2">
+        <span id="typed-name"></span><span class="cursor-blink">|</span>
+      </h1>
+
+      <!-- Deskripsi singkat -->
+      <p class="hero-quote reveal-fade" data-delay="3">
+        <em>"Sebaik-baik manusia adalah yang paling bermanfaat bagi orang lain."</em>
+        <br/><small>— HR. Ahmad &amp; Thabrani</small>
+      </p>
+
+      <!-- CTA -->
+      <div class="hero-cta reveal-fade" data-delay="4">
+        <a href="#contact" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Hubungi Saya
+        </a>
+        <a href="#about" class="btn btn-ghost">Kenali Lebih Lanjut</a>
+      </div>
+
+      <!-- Scroll hint -->
+      <div class="hero-scroll reveal-fade" data-delay="5">
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
+        </div>
+        <span>Gulir ke bawah</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       TENTANG SAYA
+  ══════════════════════════════════════════ -->
+  <section id="about" class="about section-padding">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-num">٠١</span>
+        <h2 class="section-title">Tentang Saya</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="about-grid">
+        <!-- Foto / Avatar -->
+        <div class="about-photo-col reveal-left">
+          <div class="avatar-frame">
+            <div class="avatar-rings">
+              <div class="aring aring-1"></div>
+              <div class="aring aring-2"></div>
+            </div>
+            <div class="avatar-inner">
+              <!-- Monogram NH -->
+              <div class="avatar-monogram">
+                <svg viewBox="0 0 120 120" fill="none">
+                  <circle cx="60" cy="60" r="58" fill="url(#avBg)" opacity="0.15"/>
+                  <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
+                        font-family="Playfair Display" font-size="42" font-weight="900"
+                        fill="url(#avGrad)">NH</text>
+                  <!-- Bintang dekoratif -->
+                  <text x="50%" y="82%" dominant-baseline="middle" text-anchor="middle"
+                        font-family="serif" font-size="14" fill="url(#avGrad)" opacity="0.7">✦ ✦ ✦</text>
+                  <defs>
+                    <linearGradient id="avBg" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#4ade80"/><stop offset="1" stop-color="#fbbf24"/>
+                    </linearGradient>
+                    <linearGradient id="avGrad" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#86efac"/><stop offset="1" stop-color="#fde68a"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+            <!-- Badge status -->
+            <div class="avatar-badge">
+              <span class="badge-dot"></span>
+              Aktif Mengajar
+            </div>
+          </div>
+
+          <!-- Info cards kecil -->
+          <div class="info-pills">
+            <div class="info-pill">
+              <span class="pill-icon">📍</span>
+              <span>Banjarbaru, Kalsel</span>
+            </div>
+            <div class="info-pill">
+              <span class="pill-icon">🎂</span>
+              <span>23 Januari 2000</span>
+            </div>
+            <div class="info-pill">
+              <span class="pill-icon">🕌</span>
+              <span>Pondok Pesantren Darul Falah Gambut</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Teks bio -->
+        <div class="about-text reveal-right">
+          <h3 class="about-fullname">Muhammad Nouval Hambali</h3>
+          <p class="about-role">Santri · Pengajar · Penuntut Ilmu</p>
+
+          <p class="about-bio">
+            Assalamu'alaikum warahmatullahi wabarakatuh. Saya adalah seorang pelajar sekaligus
+            pengajar di <strong>Pondok Pesantren Darul Falah, Gambut</strong>, Kalimantan Selatan.
+            Lahir pada 23 Januari 2000, saya telah menempuh pendidikan pesantren sejak muda,
+            dengan keyakinan bahwa ilmu adalah cahaya yang menerangi jalan kehidupan.
+          </p>
+          <p class="about-bio">
+            Perjalanan thalabul 'ilmi saya membawa saya ke dua pesantren besar di Kalimantan Selatan —
+            <strong>Darul Falah</strong> dan <strong>Darussalam Martapura</strong> — tempat saya belajar
+            ilmu agama, adab, dan kebijaksanaan hidup. Kini, saya mengabdikan diri untuk
+            meneruskan estafet ilmu kepada generasi berikutnya.
+          </p>
+
+          <!-- Pencapaian -->
+          <div class="about-stats">
+            <div class="stat-box">
+              <span class="stat-num">2</span>
+              <span class="stat-desc">Pesantren<br/>Ditempuh</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num">9+</span>
+              <span class="stat-desc">Tahun<br/>Menuntut Ilmu</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num">∞</span>
+              <span class="stat-desc">Semangat<br/>Belajar</span>
+            </div>
+          </div>
+
+          <a href="#contact" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+            Kirim Pesan
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       HADITS MENUNTUT ILMU
+  ══════════════════════════════════════════ -->
+  <section id="hadith" class="hadith section-padding">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-num">٠٢</span>
+        <h2 class="section-title">Hadits Menuntut Ilmu</h2>
+        <div class="section-divider"></div>
+        <p class="section-sub">Mutiara sabda Rasulullah ﷺ tentang keutamaan ilmu</p>
+      </div>
+
+      <div class="hadith-grid">
+
+        <!-- Hadits 1 -->
+        <div class="hadith-card reveal-up" data-delay="0">
+          <div class="hadith-number">١</div>
+          <div class="hadith-arabic">طَلَبُ الْعِلْمِ فَرِيضَةٌ عَلَى كُلِّ مُسْلِمٍ</div>
+          <div class="hadith-latin">"Thalabul 'ilmi farīdhatun 'alā kulli muslim"</div>
+          <p class="hadith-terjemah">
+            <strong>"Mencari ilmu itu wajib bagi setiap Muslim."</strong>
+          </p>
+          <div class="hadith-source">HR. Ibnu Majah No. 224</div>
+        </div>
+
+        <!-- Hadits 2 -->
+        <div class="hadith-card reveal-up" data-delay="1">
+          <div class="hadith-number">٢</div>
+          <div class="hadith-arabic">مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ طَرِيقًا إِلَى الْجَنَّةِ</div>
+          <p class="hadith-terjemah">
+            <strong>"Barangsiapa menempuh jalan untuk mencari ilmu, maka Allah akan memudahkan baginya jalan menuju surga."</strong>
+          </p>
+          <div class="hadith-source">HR. Muslim No. 2699</div>
+        </div>
+
+        <!-- Hadits 3 -->
+        <div class="hadith-card reveal-up" data-delay="2">
+          <div class="hadith-number">٣</div>
+          <div class="hadith-arabic">فَضْلُ الْعَالِمِ عَلَى الْعَابِدِ كَفَضْلِ الْقَمَرِ عَلَى سَائِرِ الْكَوَاكِبِ</div>
+          <p class="hadith-terjemah">
+            <strong>"Keutamaan orang berilmu atas ahli ibadah seperti keutamaan bulan atas seluruh bintang."</strong>
+          </p>
+          <div class="hadith-source">HR. Abu Dawud No. 3641</div>
+        </div>
+
+        <!-- Hadits 4 -->
+        <div class="hadith-card reveal-up" data-delay="3">
+          <div class="hadith-number">٤</div>
+          <div class="hadith-arabic">إِذَا مَاتَ الإِنْسَانُ انْقَطَعَ عَنْهُ عَمَلُهُ إِلاَّ مِنْ ثَلاَثَةٍ عِلْمٌ يُنْتَفَعُ بِهِ</div>
+          <p class="hadith-terjemah">
+            <strong>"Jika manusia meninggal, terputuslah amalnya kecuali tiga hal: ...ilmu yang bermanfaat..."</strong>
+          </p>
+          <div class="hadith-source">HR. Muslim No. 1631</div>
+        </div>
+
+        <!-- Hadits 5 -->
+        <div class="hadith-card reveal-up" data-delay="4">
+          <div class="hadith-number">٥</div>
+          <div class="hadith-arabic">خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ</div>
+          <p class="hadith-terjemah">
+            <strong>"Sebaik-baik kalian adalah orang yang mempelajari Al-Qur'an dan mengajarkannya."</strong>
+          </p>
+          <div class="hadith-source">HR. Bukhari No. 5027</div>
+        </div>
+
+        <!-- Hadits 6 -->
+        <div class="hadith-card reveal-up" data-delay="5">
+          <div class="hadith-number">٦</div>
+          <div class="hadith-arabic">اُطْلُبُوا الْعِلْمَ وَلَوْ بِالصِّينِ</div>
+          <p class="hadith-terjemah">
+            <strong>"Tuntutlah ilmu, walau sampai ke negeri Cina."</strong>
+          </p>
+          <div class="hadith-source">Atsar Masyhur</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       PERJALANAN PENDIDIKAN (Timeline)
+  ══════════════════════════════════════════ -->
+  <section id="journey" class="journey section-padding">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-num">٠٣</span>
+        <h2 class="section-title">Perjalanan Pendidikan</h2>
+        <div class="section-divider"></div>
+        <p class="section-sub">Thalabul 'ilmi — jejak langkah dalam menuntut ilmu</p>
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-item reveal-left" data-delay="0">
+          <div class="timeline-dot">
+            <span>🕌</span>
+          </div>
+          <div class="timeline-card">
+            <div class="tl-year">2000</div>
+            <h3 class="tl-title">Lahir di Banjarbaru</h3>
+            <p class="tl-desc">Muhammad Nouval Hambali lahir pada 23 Januari 2000 di Banjarbaru, Kalimantan Selatan. Sejak kecil ditanamkan nilai-nilai keislaman oleh keluarga.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-right" data-delay="1">
+          <div class="timeline-dot">
+            <span>📖</span>
+          </div>
+          <div class="timeline-card">
+            <div class="tl-year">Awal Perjalanan</div>
+            <h3 class="tl-title">Pondok Pesantren Darul Falah</h3>
+            <p class="tl-desc">Menempuh pendidikan di Pondok Pesantren Darul Falah, Gambut. Di sinilah fondasi ilmu agama, akhlak, dan kepribadian islami dibentuk dengan penuh kesungguhan.</p>
+            <span class="tl-badge">Lulusan</span>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-left" data-delay="2">
+          <div class="timeline-dot">
+            <span>🌟</span>
+          </div>
+          <div class="timeline-card">
+            <div class="tl-year">Lanjutan</div>
+            <h3 class="tl-title">Pondok Pesantren Darussalam Martapura</h3>
+            <p class="tl-desc">Melanjutkan thalabul ilmi di Pesantren Darussalam Martapura yang terkenal, salah satu pesantren terbesar di Kalimantan Selatan. Mendalami ilmu-ilmu keislaman secara komprehensif.</p>
+            <span class="tl-badge">Lulusan</span>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal-right" data-delay="3">
+          <div class="timeline-dot">
+            <span>✨</span>
+          </div>
+          <div class="timeline-card">
+            <div class="tl-year">Kini</div>
+            <h3 class="tl-title">Pengajar di Darul Falah</h3>
+            <p class="tl-desc">Kembali mengabdi di almamater sebagai pengajar di Pondok Pesantren Darul Falah, Gambut. Mendedikasikan ilmu untuk generasi penerus, karena guru terbaik adalah yang terus belajar.</p>
+            <span class="tl-badge active">Aktif</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       MOTIVASI & KATA HIKMAH
+  ══════════════════════════════════════════ -->
+  <section id="motivasi" class="motivasi section-padding">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-num">٠٤</span>
+        <h2 class="section-title">Kata Hikmah &amp; Motivasi</h2>
+        <div class="section-divider"></div>
+        <p class="section-sub">Mutiara hikmah untuk memotivasi diri dan sesama</p>
+      </div>
+
+      <!-- Featured quote besar -->
+      <div class="big-quote reveal-up">
+        <div class="big-quote-mark">"</div>
+        <blockquote>
+          Ilmu tanpa amal seperti pohon tanpa buah.<br/>
+          Amal tanpa ilmu seperti berjalan tanpa arah.
+        </blockquote>
+        <cite>— Hikmah Ulama Salaf</cite>
+      </div>
+
+      <!-- Grid quote cards -->
+      <div class="motivasi-grid">
+
+        <div class="motivasi-card reveal-up" data-delay="0">
+          <div class="mc-icon">🌱</div>
+          <h4 class="mc-title">Mulailah Hari Ini</h4>
+          <p class="mc-text">"Jangan tunda belajar sampai esok. Hari ini adalah kesempatan yang tidak akan kembali. Setiap ilmu yang kamu pelajari adalah investasi akhirat yang abadi."</p>
+        </div>
+
+        <div class="motivasi-card reveal-up" data-delay="1">
+          <div class="mc-icon">💎</div>
+          <h4 class="mc-title">Ilmu adalah Mahkota</h4>
+          <p class="mc-text">"Harta bisa dicuri, pangkat bisa hilang, tapi ilmu yang tertanam di dada adalah mahkota yang tak seorang pun bisa merampasnya darimu."</p>
+        </div>
+
+        <div class="motivasi-card reveal-up" data-delay="2">
+          <div class="mc-icon">🕯️</div>
+          <h4 class="mc-title">Jadilah Cahaya</h4>
+          <p class="mc-text">"Satu lilin bisa menyalakan seribu lilin tanpa cahayanya berkurang. Begitulah ilmu — semakin dibagi, semakin bertambah keberkahannya."</p>
+        </div>
+
+        <div class="motivasi-card reveal-up" data-delay="3">
+          <div class="mc-icon">🏔️</div>
+          <h4 class="mc-title">Jangan Mudah Menyerah</h4>
+          <p class="mc-text">"Perjalanan seribu mil dimulai dari satu langkah. Begitu pula ilmu — dimulai dari satu huruf, satu kata, satu bab, hingga engkau menjadi orang yang berilmu."</p>
+        </div>
+
+        <div class="motivasi-card reveal-up" data-delay="4">
+          <div class="mc-icon">🤲</div>
+          <h4 class="mc-title">Niatkan karena Allah</h4>
+          <p class="mc-text">"Luruskan niat dalam setiap langkah menuntut ilmu. Ilmu yang diniatkan untuk Allah akan membawa berkah, meski jalan yang dilalui terasa berat."</p>
+        </div>
+
+        <div class="motivasi-card reveal-up" data-delay="5">
+          <div class="mc-icon">🌙</div>
+          <h4 class="mc-title">Istiqomah adalah Kunci</h4>
+          <p class="mc-text">"Amal yang paling dicintai Allah adalah yang paling istiqomah meskipun sedikit. Belajar sedikit tapi rutin jauh lebih baik dari belajar banyak tapi berhenti."</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       KONTAK
+  ══════════════════════════════════════════ -->
+  <section id="contact" class="contact section-padding">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-num">٠٥</span>
+        <h2 class="section-title">Hubungi Saya</h2>
+        <div class="section-divider"></div>
+        <p class="section-sub">Jangan ragu untuk menghubungi, saya dengan senang hati membalas</p>
+      </div>
+
+      <div class="contact-wrap">
+        <!-- Pesan pembuka -->
+        <div class="contact-intro reveal-up">
+          <div class="contact-arabic">تَوَاصَلْ مَعِي</div>
+          <h3 class="contact-heading">Ada yang Ingin Didiskusikan?</h3>
+          <p class="contact-sub-text">
+            Baik itu pertanyaan seputar ilmu agama, kolaborasi, atau sekadar
+            ingin bersilaturahmi — pintu saya selalu terbuka.
+            Insya Allah saya akan membalas dalam 1×24 jam.
+          </p>
+        </div>
+
+        <!-- Kontak cards -->
+        <div class="contact-cards reveal-up" data-delay="1">
+
+          <a href="https://wa.me/6283141439348" target="_blank" rel="noopener" class="ccard ccard-wa">
+            <div class="ccard-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.554 4.1 1.523 5.822L.057 23.25l5.565-1.457A11.95 11.95 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.822 0-3.531-.494-5-.354l-3.5.917.93-3.396A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+              </svg>
+            </div>
+            <div class="ccard-info">
+              <span class="ccard-label">WhatsApp</span>
+              <span class="ccard-val">083141439348</span>
+            </div>
+            <div class="ccard-arrow">↗</div>
+          </a>
+
+          <a href="mailto:naufalhambali23@gmail.com" class="ccard ccard-email">
+            <div class="ccard-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </div>
+            <div class="ccard-info">
+              <span class="ccard-label">Email</span>
+              <span class="ccard-val">naufalhambali23@gmail.com</span>
+            </div>
+            <div class="ccard-arrow">↗</div>
+          </a>
+
+          <a href="https://github.com/naufalhambali" target="_blank" rel="noopener" class="ccard ccard-github">
+            <div class="ccard-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </div>
+            <div class="ccard-info">
+              <span class="ccard-label">GitHub</span>
+              <span class="ccard-val">github.com/naufalhambali</span>
+            </div>
+            <div class="ccard-arrow">↗</div>
+          </a>
+
+        </div>
+
+        <!-- Doa penutup -->
+        <div class="contact-doa reveal-up" data-delay="2">
+          <span class="arabic-text small">رَبِّ زِدْنِي عِلْمًا</span>
+          <p>"Ya Allah, tambahkanlah ilmuku."</p>
+          <small>— QS. Taha: 114</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <!-- Logo & tagline -->
+        <div class="footer-brand">
+          <span class="footer-logo">
+            <span class="logo-bracket-g">&lt;</span>NH<span class="logo-bracket-g">/&gt;</span>
+          </span>
+          <p class="footer-tagline">طَالِبُ الْعِلْمِ — Penuntut Ilmu</p>
+        </div>
+        <!-- Ayat -->
+        <div class="footer-ayat">
+          <span class="arabic-text small">وَقُلْ رَّبِّ زِدْنِى عِلْمًا</span>
+        </div>
+        <!-- Back to top -->
+        <a href="#home" class="back-top" aria-label="Kembali ke atas">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">
+          © 2026 <strong>Muhammad Nouval Hambali</strong>. Dibuat dengan ❤️ &amp; بِسْمِ اللَّه
+        </p>
+        <p class="footer-credit">
+          Pondok Pesantren Darul Falah · GAMBUT, Kalimantan Selatan
+        </p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
