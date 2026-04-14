@@ -157,7 +157,7 @@ function startHeroAnimations() {
   const el   = document.getElementById('typed-name');
   if (!el) return;
 
-  const name      = 'ALEX RIZKY';
+  const name      = 'NOUVAL HAMBALI';
   let   charIndex = 0;
 
   function type() {
